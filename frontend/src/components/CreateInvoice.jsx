@@ -33,42 +33,50 @@ const CreateInvoice = () => {
         await saveInvoice({...invoice, amount: Number(invoice['amount']), quantity: Number(invoice['quantity'])});
     }
   return (
-    <Component>
+    <Component >
         <Typography>Create Invoice</Typography>
+        <div>
         <TextField
             placeholder='Enter Customer Name'
-            variant="standard"
+            variant="outlined"
+            label="Vendor"
             onChange={(e) => onValueChange(e)}
             name="vendor"
         />
         <TextField
             placeholder='Enter Product Name'
-            variant="standard"
+            variant="outlined"
+            label="Product"
             onChange={(e) => onValueChange(e)}
             name="product"
         />
         <TextField
             placeholder='Enter Product Quantity (kg)'
-            variant="standard"
+            variant="outlined"
             type='number'
+            label="Quantity"
             onChange={(e) => onValueChange(e)}
+            InputProps={{ inputProps: { min: 1 } }}
             name="quantity"
         />
         <TextField
             placeholder='Enter Price Amount (BDT)'
-            variant="standard"
+            variant="outlined"
+            label="Amount"
             type='number'
             onChange={(e) => onValueChange(e)}
+            InputProps={{ inputProps: { min: 1 } }}
             name="amount"
         />
         <TextField
-            placeholder='Enter Date'
-            variant="standard"
+            variant="outlined"
             type='date'
             onChange={(e) => onValueChange(e)}
             name="date"
         />
+        </div>
         <Button 
+        sx={{marginTop: "20px"}}
         variant="contained"
         onClick={() => addNewInvoice()}
         >Add Invoice
