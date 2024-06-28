@@ -11,6 +11,7 @@ const Component = styled(Box)({
     '& > div > div' : {
         marginRight: 20,
         minWidth: 200,
+        marginTop: 20,
     }
 })
 

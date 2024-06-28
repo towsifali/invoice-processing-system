@@ -1,2 +1,8 @@
-package com.invoiceprocessor.server.services;public interface InvoiceService {
+package com.invoiceprocessor.server.services;
+
+import com.invoiceprocessor.server.model.Invoice;
+
+public interface InvoiceService {
+
+    public Invoice addInvoice(Invoice invoice);
 }
