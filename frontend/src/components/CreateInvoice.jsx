@@ -25,13 +25,14 @@ const defaultObj = {
     action: 'pending',
 }
 
-const CreateInvoice = () => {
+const CreateInvoice = ({setAddInvoice}) => {
     const [invoice, setInvoice] = useState(defaultObj);
     const onValueChange = (e) => {
         setInvoice({...invoice, [e.target.name]: e.target.value})
     }
     const addNewInvoice = async () =>{
         await saveInvoice({...invoice, amount: Number(invoice['amount']), quantity: Number(invoice['quantity'])});
+        setAddInvoice(false);
     }
   return (
     <Component >

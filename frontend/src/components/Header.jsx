@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <AppBar position='static' sx={{backgroundColor:"steelblue"}}>
         <Toolbar>
-            <img src="https://www.ironhack.com/assets/shared/logo.svg" alt="Company Logo" style={{width:"120px"}} />
+            <img src="invoice-logo.png" alt="Company Logo" style={{width:"48px"}} />
         </Toolbar>
     </AppBar>
   )
