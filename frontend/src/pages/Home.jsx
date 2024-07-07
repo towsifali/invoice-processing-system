@@ -4,7 +4,8 @@ import { Box, Typography, Button } from '@mui/material'
 import {useState} from 'react'
 import CreateInvoice from '../components/CreateInvoice'
 import Invoices from '../components/Invoices'
-import { getAllInvoice, deleteInvoice } from '../services/api'
+import PaidInvoices from '../components/PaidInvoices'
+import { getAllInvoice, deleteInvoice, payInvoice} from '../services/api'
 
 const Home = () => {
     const [addInvoice, setAddInvoice] = useState(false)
@@ -27,6 +28,19 @@ const Home = () => {
         const updatedInvoice = invoices.filter(invoice => invoice.id !== id)
         setInvoices(updatedInvoice);
     }
+    const markDoneInvoice = async (id) => {
+        await payInvoice(id);
+        const updatedInvoice = invoices.map(invoice => {
+            if(invoice.id === id){
+                invoice.action = "Paid"
+            }
+            return invoice;
+        })
+        setInvoices(updatedInvoice);
+    }
+    const pendingInvoices = invoices.filter(invoice => invoice.action === "Pending");
+    const paidInvoices = invoices.filter(invoice => invoice.action === "Paid");
+
   return (
     <>
         <Header />
@@ -41,7 +55,9 @@ const Home = () => {
             </Button>}
             {addInvoice && <CreateInvoice setAddInvoice={setAddInvoice} />}
             <Box>
-                <Invoices invoices={invoices} removeInvoice={removeInvoice}/>
+                <Invoices invoices={pendingInvoices} removeInvoice={removeInvoice} payInvoice={markDoneInvoice}/>
+                <br />
+                <PaidInvoices paidInvoices={paidInvoices} removeInvoice={removeInvoice}/>
             </Box>
         </Box>
     </>

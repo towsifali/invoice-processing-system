@@ -24,8 +24,14 @@ public class InvoiceController {
         return this.invoiceService.getInvoices();
     };
 
+
     @DeleteMapping("/invoice/{invoiceId}")
     public Invoice deleteInvoice(@PathVariable String invoiceId) {
         return this.invoiceService.deleteInvoice(Long.parseLong(invoiceId));
     };
+
+    @PutMapping("/invoice/{invoiceId}")
+    public Invoice markInvoiceAsPaid(@PathVariable String invoiceId){
+        return this.invoiceService.markInvoiceAsPaid(Long.parseLong(invoiceId));
+    }
 }

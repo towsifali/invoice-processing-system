@@ -15,14 +15,28 @@ export const getAllInvoice = async () =>{
     try {
         return await axios.get(`${API_URL}/invoice`);
     } catch (error) {
-        console.log("Error: ", error.message);
-        return error.response.data;
+        if(error.response){
+            console.log("Error: ", error.message);
+            return error.response.data;
+        } else {
+            console.log("backend is not running");
+            return "No pending invoices found.";
+        }
     }
 }
 
 export const deleteInvoice = async (id) =>{
     try {
         return await axios.delete(`${API_URL}/invoice/${id}`);
+    } catch (error) {
+        console.log("Error: ", error.message);
+        return error.response.data;
+    }
+}
+
+export const payInvoice = async (id) =>{
+    try {
+        return await axios.put(`${API_URL}/invoice/${id}`);
     } catch (error) {
         console.log("Error: ", error.message);
         return error.response.data;

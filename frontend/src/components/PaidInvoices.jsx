@@ -24,10 +24,8 @@ const StyledTable = styled(Table)({
         background: "#F6F6F7"
     }
 })
-
-
-const Invoices = ({ invoices, removeInvoice, payInvoice }) => {
-    return (
+const PaidInvoices = ({paidInvoices, removeInvoice}) => {
+  return (
         <StyledTable>
             <TableHead>
                 <TableRow sx={{ alignItems: "center" }}>
@@ -37,31 +35,26 @@ const Invoices = ({ invoices, removeInvoice, payInvoice }) => {
                     <TableCell>Amount (BDT)</TableCell>
                     <TableCell>Date</TableCell>
                     <TableCell>Status</TableCell>
-                    <TableCell>Action</TableCell>
                     <TableCell>Cancel</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
-                {invoices && Array.isArray(invoices) && invoices.length > 0 ? invoices.map((invoice,id) => (
+                {paidInvoices && Array.isArray(paidInvoices) && paidInvoices.length > 0 ? paidInvoices.map((invoice,id) => (
                     <TableRow key={id}>
                         <TableCell>{invoice.vendor}</TableCell>
                         <TableCell>{invoice.product}</TableCell>
                         <TableCell>{invoice.quantity}</TableCell>
                         <TableCell>{invoice.amount}</TableCell>
                         <TableCell>{dayjs(invoice.date).format('DD/MM/YYYY')}</TableCell>
-                        <TableCell sx={{color:"green", fontWeight: "bold"}}>{invoice.action}</TableCell>
-                        <TableCell sx={{ display: "flex", justifyContent: "space-evenly" }}>
-                            <Button variant="contained" onClick={() =>{payInvoice(invoice.id)}} color="success">Paid</Button>
-                            <Button variant="contained" color="primary">Print</Button>
-                        </TableCell>
+                        <TableCell sx={{color:"grey", fontWeight: "bold"}}>{invoice.action}</TableCell>
                         <TableCell >
                             <Button onClick={() => { removeInvoice(invoice.id) }} variant='text'>X</Button>
                         </TableCell>
                     </TableRow>
-                )) : <TableRow><TableCell colSpan={8}><Typography variant='h5'>No Pending Invoices</Typography></TableCell></TableRow>}
+                )) : <TableRow><TableCell colSpan={8}><Typography variant='h5'>No Previous Invoices</Typography></TableCell></TableRow>}
             </TableBody>
         </StyledTable>
     )
 }
 
-export default Invoices
+export default PaidInvoices

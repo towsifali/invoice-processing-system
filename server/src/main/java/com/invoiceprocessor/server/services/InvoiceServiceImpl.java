@@ -30,4 +30,13 @@ public class InvoiceServiceImpl implements InvoiceService{
         invoiceDao.delete(invoice);
         return invoice;
     }
+    @Override
+    public Invoice markInvoiceAsPaid(long id) {
+        Invoice invoice = invoiceDao.findById(id).orElse(null);
+        if (invoice != null) {
+            invoice.setAction("Paid");
+            invoiceDao.save(invoice);
+        }
+        return invoice;
+    }
 }

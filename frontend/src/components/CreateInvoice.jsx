@@ -22,7 +22,7 @@ const defaultObj = {
     quantity:0,
     amount:0,
     date: '',
-    action: 'pending',
+    action: 'Pending',
 }
 
 const CreateInvoice = ({setAddInvoice}) => {
